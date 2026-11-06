@@ -21,6 +21,14 @@ class CircleTest(unittest.TestCase):
         self.assertAlmostEqual(circle.area(0.5), 0.7853981633974483)
         self.assertAlmostEqual(circle.perimeter(0.5), 3.141592653589793)
 
+    def test_negative_area(self):
+        with self.assertRaises(ValueError):
+            circle.area(-2)
+
+    def test_negative_perimeter(self):
+        with self.assertRaises(ValueError):
+            circle.perimeter(-2)
+
 
 class RectangleTest(unittest.TestCase):
     def test_area(self):
@@ -46,6 +54,14 @@ class RectangleTest(unittest.TestCase):
         self.assertEqual(rectangle.area(4, 4), 16)
         self.assertEqual(rectangle.perimeter(4, 4), 16)
 
+    def test_negative_area(self):
+        with self.assertRaises(ValueError):
+            rectangle.area(-3, 5)
+
+    def test_negative_perimeter(self):
+        with self.assertRaises(ValueError):
+            rectangle.perimeter(3, -5)
+
 
 class SquareTest(unittest.TestCase):
     def test_area(self):
@@ -61,6 +77,14 @@ class SquareTest(unittest.TestCase):
     def test_float(self):
         self.assertAlmostEqual(square.area(1.5), 2.25)
         self.assertAlmostEqual(square.perimeter(1.5), 6)
+
+    def test_negative_area(self):
+        with self.assertRaises(ValueError):
+            square.area(-4)
+
+    def test_negative_perimeter(self):
+        with self.assertRaises(ValueError):
+            square.perimeter(-4)
 
 
 class TriangleTest(unittest.TestCase):
@@ -89,6 +113,18 @@ class TriangleTest(unittest.TestCase):
     def test_line(self):
         self.assertEqual(triangle.area(1, 2, 3), 0)
         self.assertEqual(triangle.perimeter(1, 2, 3), 6)
+
+    def test_negative_area(self):
+        with self.assertRaises(ValueError):
+            triangle.area(-3, 4, 5)
+
+    def test_negative_perimeter(self):
+        with self.assertRaises(ValueError):
+            triangle.perimeter(3, -4, 5)
+
+    def test_wrong_triangle(self):
+        with self.assertRaises(ValueError):
+            triangle.area(1, 2, 10)
 
 
 if __name__ == "__main__":
